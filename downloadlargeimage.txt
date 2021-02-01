@@ -1,0 +1,52 @@
+http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/18/0_0.jpeg
+
+http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/18/910_762.jpeg
+
+256x256
+
+http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/18/909_761.jpeg
+
+
+http://www.aasted.org/HTTPget/
+
+
+java -jar ../HTTPget/HTTPget.jar http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/18/[0..910]_[0..762].jpeg -o Tiles\[0..910]_[0..762].jpg -t 24
+java -jar ../HTTPget/HTTPget.jar http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/17/[0..455]_[0..381].jpeg -o Tiles\[0..455]_[0..381].jpg -t 24
+java -jar ../HTTPget/HTTPget.jar http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/16/[0..228]_[0..190].jpeg -o Tiles\[0..228]_[0..190].jpg -t 24
+java -jar ../HTTPget/HTTPget.jar http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/15/[0..113]_[0..95].jpeg -o Tiles\[0..113]_[0..95].jpg -t 24
+java -jar ../HTTPget/HTTPget.jar http://hyper-resolution.org/dzi/Rijksmuseum/SK-C-5/SK-C-5_VIS_20-um_2019-12-21_files/14/[0..56]_[0..47].jpeg -o Tiles\[0..56]_[0..47].jpg -t 24
+
+..\vips-dev-8.9\bin\vips --vips-concurrency=12 --vips-progress im_vips2tiff large_18_0.tif rembrand_night_watch2.tif:jpeg:80,tile:256x256,pyramid
+
+// too large !!!
+makeimage 0.tif 0 910 0 762
+
+
+makeimage 0.tif 0 455 0 381 
+halftiff 0.tif 1.tif
+halftiff 1.tif 2.tif
+halftiff 2.tif 3.tif
+halftiff 3.tif 4.tif
+halftiff 4.tif 5.tif
+halftiff 5.tif 6.tif
+halftiff 6.tif 7.tif
+halftiff 7.tif 8.tif
+tiffmerge 8.tif 7.tif 6.tif 5.tif 4.tif 3.tif 2.tif 1.tif 0.tif rembrandt_night_watch.tif
+
+
+C:\Users\FredericDelhoume\Downloads\Fred\temp\vliv\Global\Sources>cl /c /MD /DXMD_H /Ox /nologo /I../../src/jpeg-6b /I../../src/zlib123 /I../../src/tiff-3.8.2\libtiff makeimage.cpp
+makeimage.cpp
+C:\Users\FredericDelhoume\Downloads\Fred\temp\vliv\Global\Sources>link makeimage.obj /out:makeimage.exe ../../src/jpeg-6b/libjpeg.lib ../../src/tiff-3.8.2\libtiff\libtiff.lib ../../src/zlib123\zlib.lib  /nodefaultlib:libcmt.lib
+
+
+
+
+java -jar ../HTTPget/HTTPget.jar https://openseadragon.github.io/example-images/duomo/duomo_files/14/[0..54]_[0..40].jpg -o Tiles\[0..54]_[0..40].jpg -t 24
+
+makeimage 0.tif 1 53 1 39
+halftiff 0.tif 1.tif
+halftiff 1.tif 2.tif
+halftiff 2.tif 3.tif
+halftiff 3.tif 4.tif
+halftiff 4.tif 5.tif
+tiffmerge 5.tif 4.tif 3.tif 2.tif 1.tif 0.tif duomo.tif
